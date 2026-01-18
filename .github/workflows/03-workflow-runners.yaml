@@ -23,4 +23,4 @@ jobs:
         - name: Show OS
           run: |
              echo "This job is running on an macos runner. ${{runner.os}}"
-             echo "This job is running on an Ubuntu runner. $RUNNER_OS 
+             echo "This job is running on an Ubuntu runner. $RUNNER_OS "
