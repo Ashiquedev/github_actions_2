@@ -3,7 +3,7 @@ on:
     pull_request:
         types: [closed]
         branches: 
-            - main
+            - pr-test-1
 jobs:
     echo:
         runs-on: ubuntu-latest
