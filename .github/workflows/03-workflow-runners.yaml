@@ -1,0 +1,19 @@
+name: 02 - Workflow Events
+on: 
+  workflow_dispatch:
+jobs:
+  ubuntu-echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show OS
+        run: "This job is running on an Ubuntu runner. ${{runner.os}}"
+  windows-echo:
+    runs-on: windows-latest
+    steps:
+        - name: Show OS
+          run: "This job is running on an windows runner. ${{runner.os}}"
+  macos-echo:
+    runs-on: macos-latest
+    steps:
+        - name: Show OS
+          run: "This job is running on an macos runner. ${{runner.os}}"
