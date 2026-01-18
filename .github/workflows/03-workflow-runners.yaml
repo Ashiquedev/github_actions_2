@@ -1,4 +1,4 @@
-name: 02 - Workflow Events
+name: 03 - runners
 on: 
   workflow_dispatch:
 jobs:
