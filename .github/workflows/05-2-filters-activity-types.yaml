@@ -1,0 +1,28 @@
+name: 05 - 2 - Event Filters and Activity Types.
+on:
+    pull_request:
+        types: [closed]
+        branches: 
+            - main
+jobs:
+    echo:
+        runs-on: ubuntu-latest
+        steps:
+        - name: print
+          run: |
+               echo "Triggered by event: ${{ github.event_name }}"
+               echo "PR action: ${{ github.event.action }}"
+               echo "Running whenever a PR is closed"
+               echo '${{ toJson(github.event) }}' > event.json
+               echo "Event name: ${{ github.event_name }}"
+               echo "PR Action: ${{ github.event.action }}"
+               echo "PR Number: ${{ github.event.pull_request.number }}"
+               echo "PR Title: ${{ github.event.pull_request.title }}"
+               echo "Author: ${{ github.event.pull_request.user.login }}"
+               echo "Source branch (head): ${{ github.event.pull_request.head.ref }}"
+               echo "Target branch (base): ${{ github.event.pull_request.base.ref }}"
+        - name: Upload event.json as artifact
+          uses: actions/upload-artifact@v4
+          with:
+            name: event-json
+            path: event.json
