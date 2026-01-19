@@ -4,7 +4,7 @@ on:
     types: [opened]
   push:
     branches:
-      - expressions
+      - main
   workflow_dispatch:  
     inputs:
       debug:
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest    
     steps:
       - name: Print start-up data
-        if: ${{ inputs.debug == true }}
+        if: inputs.debug == true
         run: |
           echo "Triggered by: ${{ github.event_name }}"
           echo "Branch: ${{ github.ref_name }}"
@@ -24,7 +24,7 @@ jobs:
           echo "Runner OS: ${{ runner.os }}"
 
       - name: "debug=${{inputs.debug}} Print when triggered from expressions"
-        if: ${{ inputs.debug == true && github.ref_name == 'expressions' }}
+        if: inputs.debug == true && github.ref_name == 'main'
         run: echo "I was triggered from expressions"
 
       - name: print
