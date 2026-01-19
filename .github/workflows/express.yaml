@@ -12,6 +12,7 @@ on:
         description: 'Enable debug logging'
         default: true
 
+        
 jobs:
   echo:
     runs-on: ubuntu-latest
