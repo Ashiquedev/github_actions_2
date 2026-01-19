@@ -1,4 +1,4 @@
-name: 07 - Using Expressions
+name: exp - Using Expressions
 on:
   pull_request:
     types: [opened]
