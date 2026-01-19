@@ -1,4 +1,6 @@
 name: 07 - Using Expressions
+run-name: 07 - Using Expressions | DEBUG - ${{ inputs.debug && 'ON' || 'OFF' }}
+
 on:
   pull_request:
     types: [opened]
@@ -25,6 +27,21 @@ jobs:
 
       - name: "debug=${{inputs.debug}} Print when triggered from expressions"
         if: inputs.debug == true && github.ref_name == 'main'
+        run: echo "I was triggered from expressions"
+
+      - name: print
+        run: echo "hello, world!"
+
+      - name: Print start-up data
+        if: inputs.debug
+        run: |
+          echo "Triggered by: ${{ github.event_name }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit SHA: ${{ github.sha }}"
+          echo "Runner OS: ${{ runner.os }}"
+
+      - name: "debug=${{inputs.debug}} Print when triggered from expressions"
+        if: inputs.debug && github.ref == 'refs/heads/main'
         run: echo "I was triggered from expressions"
 
       - name: print
