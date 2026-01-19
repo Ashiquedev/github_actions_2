@@ -2,11 +2,11 @@ name: 07 - Using Expressions
 run-name: 07 - Using Expressions | DEBUG - ${{ inputs.debug && 'ON' || 'OFF' }}
 
 on:
-  pull_request:
-    types: [opened]
-  push:
-    branches:
-      - main
+  #pull_request:
+  #  types: [opened]
+  #push:
+  #  branches:
+  #    - main
   workflow_dispatch:  
     inputs:
       debug:
