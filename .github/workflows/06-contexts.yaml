@@ -15,3 +15,7 @@ jobs:
             echo '"Workflow: ${{ github.workflow }}"'
             echo '"Run ID: ${{ github.run_id }}"'
             echo '"Run number: ${{ github.run_number }}"'
+        - name: Retrieve Variable
+          run: |
+            echo "variable that stored in repositotoey actions -> variables: ${{vars.MY_VAR }}"
+            
