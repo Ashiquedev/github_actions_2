@@ -5,11 +5,11 @@ on:
     push:
      branches:
         - expressions
-    workflow_dispatch:
-        inputs:
-            debug:
-                type: boolean
-                default: true
+    workflow_dispatch:  
+      inputs:
+        debug:
+          type: boolean
+          default: true
 jobs:
     echo:
         runs-on: 'ubuntu-latest'    
