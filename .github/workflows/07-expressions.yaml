@@ -1,15 +1,15 @@
 name: 07 - Using Expressions
 on:
-    pull_request:
-        types: [opened]
-    push:
-     branches:
-        - expressions
-    workflow_dispatch:  
-      inputs:
-        debug:
-          type: boolean
-          default: true
+  pull_request:
+    types: [opened]
+  push:
+    branches:
+      - expressions
+  workflow_dispatch:
+    inputs:
+      debug:
+        type: boolean
+        default: true
 jobs:
     echo:
         runs-on: 'ubuntu-latest'    
