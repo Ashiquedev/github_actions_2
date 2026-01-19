@@ -1,7 +1,7 @@
 name: 08 - Using Variables
 #run-name: 06 - Contexts | DEBUG - ${{ inputs.debug }}
 on:
-    push:
+    
     workflow_dispatch:  
     
 env:
@@ -24,6 +24,12 @@ jobs:
           echo 'Job env var: ${{ env.JOB_VAR }}' 
           echo 'Workflow env var: ${{ env.WORKFLOW_VAR }}'
           echo 'Overwritten: ${{ env.OVERWRITTEN }}'
+          # result:
+          # "Step env var: I am a step env var "
+          # "Step env var 2: I am another step var"
+          # Job env var: I am a job env var
+          # Workflow env var: I am a workflow env var
+          # Overwritten: I have been overwritten at the job level
       - name: Print Env Variables by $MY_VARIABLE
         env: 
           STEP_VAR: 'I am a step env var'
