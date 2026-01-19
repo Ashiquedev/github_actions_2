@@ -1,10 +1,10 @@
 name: exp - Using Expressions
 on:
-  pull_request:
-    types: [opened]
-  push:
-    branches:
-      - expressions
+  #pull_request:
+  #  types: [opened]
+  #push:
+  #  branches:
+  #    - expressions
   workflow_dispatch:
     inputs:
       debug:
@@ -12,7 +12,7 @@ on:
         description: 'Enable debug logging'
         default: true
 
-        
+
 jobs:
   echo:
     runs-on: ubuntu-latest
