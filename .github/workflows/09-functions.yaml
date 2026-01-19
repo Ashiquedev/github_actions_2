@@ -6,6 +6,15 @@ jobs:
     echo1:
         runs-on: ubuntu-latest
         steps:
+            - name: Print PR title
+              run: |
+                echo "PR Title: ${{ github.event.pull_request.title }}"
+            - name: Print PR label
+              run: |
+                echo "PR label: ${{ toJson(github.event.pull_request.labels) }}"
+            - name: print gituhub event
+              run: |
+                echo "${{ toJson(github.event.pull_request) }}"
             - name: Sleep for 20 seconds
               run: sleep 20
             - name: Failing step
