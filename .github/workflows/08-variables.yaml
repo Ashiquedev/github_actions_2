@@ -46,4 +46,26 @@ jobs:
         run: |
           echo 'step overwritten env var: ${{ env.OVERWRITTEN }}'
           echo "Shell Context: $OVERWRITTEN"
-   
+    windows:
+      runs-on: windows-latest
+      steps:
+        - name: Print Env Variables (Windows PowerShell)
+          env: 
+            STEP_VAR: 'I am a step env var'
+          run: |
+            # In PowerShell, you MUST use $env:
+            echo "Step env var: $env:STEP_VAR"
+            echo "Job env var: $env:JOB_VAR"
+            echo "Workflow env var: $env:WORKFLOW_VAR"
+
+
+
+#Why "GitHub Interpolation" is safer
+#The ${{ env.VAR_NAME }} syntax is universal. It works exactly the same on Ubuntu, Windows, and macOS because GitHub replaces that text before the shell even starts.
+#
+#Summary of what to use:
+#Use ${{ env.VAR }} if you want your workflow to work on any OS without changing the code.
+#
+#Use $VAR only if you are 100% sure you are using runs-on: ubuntu-latest.
+#
+#Use $env:VAR only if you are 100% sure you are using runs-on: windows-latest.
