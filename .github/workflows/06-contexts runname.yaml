@@ -1,22 +1,56 @@
 name: 06 - Contexts runname
-run-name: My custom workflow run name - ${{ runner.os }}
+run-name: 06 - Contexts | DEBUG - ${{ inputs.debug }}
 on:
     push:
     workflow_dispatch:  
+      inputs:
+        debug:
+          type: boolean
+          default: false
+env:
+  MY_WORKFLOW_VAR: 'workflow'
+  MY_OVERWRITTEN_VAR: 'workflow'
 jobs:
     echo-data:
-        runs-on: ubuntu-latest
-        steps:
-        - name: Display Information
-          run: |
-            echo '"Event name: ${{ github.event_name }}"'
-            echo '"Ref: ${{ github.ref }}"'  
-            echo '"SHA: ${{ github.sha }}"' 
-            echo '"Actor: ${{ github.actor }},triggering actor: ${{ github.triggering_actor }}"'
-            echo '"Workflow: ${{ github.workflow }}"'
-            echo '"Run ID: ${{ github.run_id }}"'
-            echo '"Run number: ${{ github.run_number }}"'
+      runs-on: ubuntu-latest
+      env:
+        MY_JOB_VAR: 'job'
+        MY_OVERWRITTEN_VAR: 'job'        
+      steps:
+      - name: Display Information
+        run: |
+          echo '"Event name: ${{ github.event_name }}"'
+          echo '"Ref: ${{ github.ref }}"'  
+          echo '"SHA: ${{ github.sha }}"' 
+          echo '"Actor: ${{ github.actor }},triggering actor: ${{ github.triggering_actor }}"'
+          echo '"Workflow: ${{ github.workflow }}"'
+          echo '"Run ID: ${{ github.run_id }}"'
+          echo '"Run number: ${{ github.run_number }}"'
+      - name: Retrieve Variable
+        env: 
+          MY_STEP_VAR: "step"
+          MY_OVERWRITTEN_VAR: "step"
+        run: |
+          echo "variable that stored in repositotoey actions -> variables: ${{vars.MY_VAR }}"
+          echo ${{ env.MY_WORKFLOW_VAR }}
+          echo ${{ env.MY_OVERWRITTEN_VAR }}
+          echo ${{ env.MY_JOB_VAR }}
+    envvar:
+      runs-on: ubuntu-latest
+      steps:
+        - name: print env var
+          run:
+            echo ${{ env.MY_WORKFLOW_VAR }}
+            echo ${{ env.MY_OVERWRITTEN_VAR }}
+    
         - name: Retrieve Variable
+          env: 
+            MY_STEP_VAR: "step"
+            MY_OVERWRITTEN_VAR: "step"
           run: |
-            echo "variable that stored in repositotoey actions -> variables: ${{vars.MY_VAR }}"
+            echo "STEP_VAR=$MY_STEP_VAR"
+            echo "JOB_VAR=$MY_JOB_VAR"
+            echo "WF_VAR=$MY_WORKFLOW_VAR"
+            echo "OVERRIDE=$MY_OVERWRITTEN_VAR"
+            echo $MY_WORKFLOW_VAR
             
